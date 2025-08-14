@@ -35,7 +35,7 @@ const unsubscribe = onAuthStateChanged(auth, (user) => {
   }, []);
 
   return (
-    <div className="flex justify-between items-center w-screen px-8 py-4 bg-gradient-to-b from-black z-20 relative">
+    <div className="flex justify-between items-center w-screen px-8 py-4 bg-gradient-to-b from-black z-20 absolute">
       {/* Left: Netflix logo */}
       <img
         className="w-40 m-5"
