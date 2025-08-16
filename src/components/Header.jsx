@@ -46,17 +46,17 @@ const Header = () => {
   };
 
   return (
-    <div className="flex flex-col sm:flex-row justify-between items-center w-full px-4 sm:px-8 py-3 bg-gradient-to-b from-black z-20 absolute">
+    <div className="flex justify-between items-center w-full px-4 sm:px-8 py-3 bg-gradient-to-b from-black z-20 absolute">
       {/* Left: Netflix logo */}
       <img
-        className="w-24 sm:w-32 md:w-40 mb-2 sm:mb-0"
+        className="w-20 sm:w-28 md:w-36"
         src={LOGO_URL}
         alt="logo"
       />
 
       {/* Middle: GPT search / Home button */}
       <button
-        className="py-1 px-3 sm:px-4 mb-2 sm:mb-0 bg-purple-900 text-white rounded-lg text-xs sm:text-sm md:text-base"
+        className="py-1 px-3 sm:px-4 bg-purple-900 text-white rounded-lg text-xs sm:text-sm md:text-base"
         onClick={handleGptSearchClick}
       >
         {showGptSearch ? "HomePage" : "GPT Search"}

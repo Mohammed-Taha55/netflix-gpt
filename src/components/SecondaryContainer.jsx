@@ -6,7 +6,8 @@ const SecondaryContainer = () => {
 
   return (
     <div className="bg-black">
-      <div className="relative z-20 -mt-40 md:-mt-52 px-4 sm:px-6 md:pl-12">
+      {/* Adjusted margin for responsiveness */}
+      <div className="mt-4 sm:-mt-20 md:-mt-32 px-2 sm:px-8 md:px-12 relative z-20">
         <MovieList title="Now Playing" movies={movies.nowPlayingMovies} />
         <MovieList title="Top Rated" movies={movies.topRatedMovies} />
         <MovieList title="Popular" movies={movies.popularMovies} />
@@ -17,5 +18,6 @@ const SecondaryContainer = () => {
 };
 
 export default SecondaryContainer;
+
 
 
