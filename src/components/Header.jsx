@@ -12,7 +12,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
-  const showGptSearch = useSelector((store) => store.gpt.showGptSearch)
+  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
 
   const handleSignOut = () => {
     signOut(auth)
@@ -24,7 +24,7 @@ const Header = () => {
   };
 
   useEffect(() => {
-const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, email, displayName } = user;
         dispatch(addUser({ uid: uid, email, displayName: displayName }));
@@ -34,45 +34,59 @@ const unsubscribe = onAuthStateChanged(auth, (user) => {
         navigate("/");
       }
     });
-    return () => unsubscribe()
+    return () => unsubscribe();
   }, []);
 
   const handleGptSearchClick = () => {
-dispatch(toggleGptSearchView())
-  }
-const handleLanguageChange = (e) => {
-dispatch(changeLanguage(e.target.value))
+    dispatch(toggleGptSearchView());
+  };
 
-}
+  const handleLanguageChange = (e) => {
+    dispatch(changeLanguage(e.target.value));
+  };
+
   return (
-    <div className="flex justify-between items-center w-screen px-8 py-4 bg-gradient-to-b from-black z-20 absolute">
+    <div className="flex flex-col sm:flex-row justify-between items-center w-full px-4 sm:px-8 py-3 bg-gradient-to-b from-black z-20 absolute">
       {/* Left: Netflix logo */}
       <img
-        className="w-40 m-5"
+        className="w-24 sm:w-32 md:w-40 mb-2 sm:mb-0"
         src={LOGO_URL}
         alt="logo"
       />
-     
-    <button className="py-2 px-4 m-2 my-2 bg-purple-900 text-white rounded-lg"
-    onClick={handleGptSearchClick}
-    >
-      {showGptSearch? "HomePage" : "GPT Search"}
+
+      {/* Middle: GPT search / Home button */}
+      <button
+        className="py-1 px-3 sm:px-4 mb-2 sm:mb-0 bg-purple-900 text-white rounded-lg text-xs sm:text-sm md:text-base"
+        onClick={handleGptSearchClick}
+      >
+        {showGptSearch ? "HomePage" : "GPT Search"}
       </button>
-      {/* Right: Profile + Sign Out */}
+
+      {/* Right: Profile + Language + Sign Out */}
       {user && (
-        
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
           <img
-            className="w-10 rounded"
+            className="w-7 sm:w-8 md:w-10 rounded"
             src={LOGO2_URL}
-            alt="smile logo"
+            alt="profile logo"
           />
-           { showGptSearch && (<select className="p-2 bg-gray-900 text-white" onChange={handleLanguageChange}>
-        {SUPPORTED_LANGUAGES.map(lang => <option key={lang.identifier} value={lang.identifier}>{lang.name}</option> )}
-      </select>)}
+
+          {showGptSearch && (
+            <select
+              className="p-1 sm:p-1.5 md:p-2 bg-gray-900 text-white text-xs sm:text-sm md:text-base rounded"
+              onChange={handleLanguageChange}
+            >
+              {SUPPORTED_LANGUAGES.map((lang) => (
+                <option key={lang.identifier} value={lang.identifier}>
+                  {lang.name}
+                </option>
+              ))}
+            </select>
+          )}
+
           <button
             onClick={handleSignOut}
-            className="font-bold text-white"
+            className="font-bold text-white text-xs sm:text-sm md:text-base"
           >
             (Sign Out)
           </button>
